@@ -1,10 +1,12 @@
 library(ProjectTemplate)
 load.project()
 
+# Cleans the American League (AL) and National League (NL) data scraped from
+# ESPN's MLB Grid
 AL_cleaned <- clean_ESPN_grid_data(AL.standings, league = "AL")
 NL_cleaned <- clean_ESPN_grid_data(NL.standings, league = "NL")
 
-# Fits the Bradley-Terry models
+# Fits the Bradley-Terry models for both leagues
 set.seed(42)
 AL_model <- BTm(cbind(Wins, Losses), Team, Opponent, ~ `team_`,
                 id = "team_", data = AL_cleaned$standings)
