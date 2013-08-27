@@ -60,7 +60,6 @@ heatmap_MLB_grid_probs <- function(probs, num_breaks = 8) {
                                  probs = seq(0, 1, length = num_breaks),
                                  names = FALSE))
   breaks <- c(0, breaks)
-  browser()
   probs$cuts <- cut(probs$Probability, breaks = breaks, dig = 2, ordered = TRUE, right = FALSE)
   p <- ggplot(probs, aes(x = Team, y = Opponent, z = cuts, color = cuts))
   p <- p + geom_tile(aes(fill = cuts))
