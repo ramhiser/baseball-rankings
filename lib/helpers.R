@@ -54,15 +54,16 @@ clean_ESPN_grid_data <- function(standings, league = c("AL", "NL")) {
 #'
 #' @param probs data.frame of the probabilties for each team matchup
 #' @param num_breaks the number of cuts in the heatmap. See details.
+#' @param title title to add to the heatmap
 #' @return a \code{\link{ggplot2}} object
-heatmap_MLB_grid_probs <- function(probs, num_breaks = 8) {
+heatmap_MLB_grid_probs <- function(probs, num_breaks = 7, title = "") {
   breaks <- with(probs, quantile(Probability[Probability > 0],
                                  probs = seq(0, 1, length = num_breaks),
                                  names = FALSE))
-  breaks <- c(0, breaks)
+  breaks <- c(0, breaks, 1)
   probs$cuts <- cut(probs$Probability, breaks = breaks, dig = 2, ordered = TRUE, right = FALSE)
   p <- ggplot(probs, aes(x = Team, y = Opponent, z = cuts, color = cuts))
   p <- p + geom_tile(aes(fill = cuts))
   p <- p + scale_fill_brewer(palette = "Blues")
-  p
+  p + ggtitle(title)
 }

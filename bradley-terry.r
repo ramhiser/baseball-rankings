@@ -41,8 +41,8 @@ NL_probs <- melt(NL_probs)
 colnames(AL_probs) <- colnames(NL_probs) <- c("Team", "Opponent", "Probability")
 
 # Plots of heatmaps of the probabilties of each team matchup
-heatmap_MLB_grid_probs(AL_probs)
-heatmap_MLB_grid_probs(NL_probs)
+heatmap_MLB_grid_probs(AL_probs, title = "American League Matchup Probabilities")
+heatmap_MLB_grid_probs(NL_probs, title = "National League Matchup Probabilities")
 
 # American League probabilities of matchups of best, worst, and middle ranked teams
 
