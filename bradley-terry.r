@@ -20,6 +20,10 @@ names(AL_abilities) <- AL_cleaned$teams
 NL_abilities <- data.frame(BTabilities(NL_model))$ability
 names(NL_abilities) <- NL_cleaned$teams
 
+# Tables of team abilities
+print(ascii(as.data.frame(BTabilities(AL_model)), digits = 3), type = "org")
+print(ascii(as.data.frame(BTabilities(NL_model)), digits = 3), type = "org")
+
 # Bar graphs of the team abilities for each league
 barplot(sort(AL_abilities), main = "American League Team Abilities")
 barplot(sort(NL_abilities), main = "National League Team Abilities")
@@ -67,8 +71,6 @@ p <- ggplot(HOU_probs, aes(x = Opponent)) + geom_bar(aes(weight = Probability))
 p <- p + ylab("Probability") + theme_bw()
 p <- p + geom_hline(aes(yintercept = 0.5), color = "red")
 p + ggtitle("Probability of Houston Beating Other American League Opponents")
-
-
 
 # National League probabilities of matchups of best, worst, and middle ranked teams
 
